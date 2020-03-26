@@ -2,7 +2,7 @@
 ```
 python3 manage.py makemigrations
 python3 manage.py migrate
-denghui/Denghui@123
+
 ```
 
 # 创建超级用户
