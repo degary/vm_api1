@@ -84,6 +84,7 @@ class VHostView(ModelViewSet):
     def headers(self,request,*args,**kwargs):
         header_fields_list = models.VirtualMachine._meta.fields
         header_dic=get_headers(header_fields_list)
+        print(header_dic)
         return Response(header_dic)
 
     # authentication_classes = ['MyAuthentication',]

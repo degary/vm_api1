@@ -78,6 +78,7 @@ class NetName(models.Model):
 
 
 
+
 class VirtualMachine(models.Model):
     vm_audit_choices=(
         (0,'待审核'),
