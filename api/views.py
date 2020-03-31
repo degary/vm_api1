@@ -10,6 +10,7 @@ from rest_framework.viewsets import ModelViewSet,GenericViewSet
 from api.utils.serializer import PhysicalMachineSerializer
 from api.utils.serializer import VirtualMachineSerializer
 from api.utils.serializer import MachineRoomSerializer
+from api.utils.serializer import NetNameSerializer
 from  rest_framework.decorators import api_view,authentication_classes
 from django_filters.rest_framework import DjangoFilterBackend
 import subprocess
@@ -42,6 +43,12 @@ class AuthView(APIView):
 class RoomView(ModelViewSet):
     queryset = models.MachineRoom.objects.all().order_by('id')
     serializer_class = MachineRoomSerializer
+    pagination_class = PageNumberPagination
+
+
+class NetView(ModelViewSet):
+    queryset = models.NetName.objects.all()
+    serializer_class = NetNameSerializer
     pagination_class = PageNumberPagination
 
 
@@ -84,6 +91,7 @@ class VHostView(ModelViewSet):
     def headers(self,request,*args,**kwargs):
         header_fields_list = models.VirtualMachine._meta.fields
         header_dic=get_headers(header_fields_list)
+        print(header_fields_list)
         print(header_dic)
         return Response(header_dic)
 
@@ -152,6 +160,8 @@ class GetMemInfo(APIView):
                 ret["code"] = 2222
             else:
                 return HttpResponse(res)
+
+
 
 
 

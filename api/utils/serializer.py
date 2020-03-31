@@ -50,11 +50,13 @@ class VirtualMachineSerializer(serializers.ModelSerializer):
     host_ip=serializers.CharField(source='host_machine.host_ip',required=False)
     datastore=serializers.CharField(source='vm_datastore.disk_name',required=False)
     room_name=serializers.CharField(source='host_machine.room_site.room_name',required=False)
+    #增加网卡选项
+    net_name=serializers.CharField(source='vm_netname.name',required=False)
     class Meta:
         model=models.VirtualMachine
         # fields='__all__'
         # depth=1
-        fields=('id','vm_name','vm_cpu','vm_memory','vm_os','vm_disk','vm_ip','vm_gateway','vm_audit','vm_proposer','host_ip','room_name','datastore','vm_installed')
+        fields=('id','vm_name','vm_cpu','vm_memory','vm_os','vm_disk','vm_ip','vm_gateway','vm_audit','vm_proposer','host_ip','room_name','datastore','vm_installed', 'net_name')
         read_only_fields=('vm_audit',)
 
     def validate_host_ip(self,value):
@@ -179,5 +181,8 @@ class PhysicalDiskSerializer(serializers.ModelSerializer):
     #     for field in header_obj_list:
     #         header.append({field.name:field.verbose_name})
     #     return header
-
+class NetNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.NetName
+        fields = '__all__'
 

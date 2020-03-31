@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'rest_framework_swagger',
+
 ]
 
 MIDDLEWARE = [
@@ -90,9 +92,9 @@ WSGI_APPLICATION = 'VmCreate.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vm_testdb',
-        'USER': 'degary',
-        'PASSWORD': '123456',
+        'NAME': 'vm_testdb1',
+        'USER': 'root',
+        'PASSWORD': 'FN8ifHTwnt',
         'HOST': '192.168.0.11',
         'PORT': 23316,
     }

@@ -71,9 +71,9 @@ class PhysicalDisk(models.Model):
     def __str__(self):
         return self.disk_name
 
-class NetName(models.Model):
-    net_adapter = models.CharField(max_length=32,verbose_name="网络适配器")
-    net_mount = models.ManyToManyField("PhysicalMachine")
+# class VmNetName(models.Model):
+#     net_adapter = models.CharField(max_length=32,verbose_name="网络适配器")
+#     net_mount = models.ManyToManyField("PhysicalMachine")
 
 
 
@@ -101,10 +101,11 @@ class VirtualMachine(models.Model):
     vm_proposer=models.CharField(max_length=32,verbose_name='申请人')
     vm_createTime=models.DateField(auto_now_add=True)
     vm_updateTime=models.DateField(auto_now=True)
-
+    #增加网卡选项
+    vm_netname=models.ForeignKey(to='NetName',default=1)
     host_machine=models.ForeignKey(to='PhysicalMachine')
     vm_datastore=models.ForeignKey(to='PhysicalDisk')
-    vm_net = models.ForeignKey(to='NetName')
+    #vm_net = models.ForeignKey(to='NetName',default=1)
 
     def __str__(self):
         return self.vm_name
@@ -114,3 +115,5 @@ class VirtualMachine(models.Model):
         verbose_name_plural='虚拟机表'
         ordering = ['-id']
 
+class NetName(models.Model):
+    name=models.CharField(max_length=32,default='VM Network')
