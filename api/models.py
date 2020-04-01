@@ -66,10 +66,15 @@ class PhysicalDisk(models.Model):
     disk_name=models.CharField(max_length=32,verbose_name='磁盘名称')
     disk_space=models.IntegerField(default=0,verbose_name='磁盘大小TB')
     disk_free_space=models.FloatField(default=0,verbose_name="可用空间")
-    disk_mount=models.ForeignKey(to='PhysicalMachine')
+    disk_mount=models.ForeignKey(to='PhysicalMachine',verbose_name='挂载宿主机')
 
     def __str__(self):
         return self.disk_name
+
+    class Meta:
+        db_table = 'PhysicalDisk'
+        verbose_name_plural='存储表'
+        ordering=['id']
 
 # class VmNetName(models.Model):
 #     net_adapter = models.CharField(max_length=32,verbose_name="网络适配器")
