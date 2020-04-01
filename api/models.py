@@ -47,7 +47,7 @@ class PhysicalMachine(models.Model):
     host_active=models.FloatField(default=0,verbose_name="可用资源\M")
     idrac_ip=models.CharField(max_length=32,blank=True,verbose_name='IDRAC IP')
     host_ip=models.CharField(max_length=32,blank=True,verbose_name='主机IP')
-    # host_mem_free=models.IntegerField(verbose_name='可用内存/M')
+    host_mem_free=models.IntegerField(verbose_name='可用内存/M',default=1)
     create_time=models.DateField(auto_now_add=True)
     update_time=models.DateField(auto_now=True)
 

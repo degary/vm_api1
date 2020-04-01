@@ -11,6 +11,7 @@ from api.utils.serializer import PhysicalMachineSerializer
 from api.utils.serializer import VirtualMachineSerializer
 from api.utils.serializer import MachineRoomSerializer
 from api.utils.serializer import NetNameSerializer
+from api.utils.serializer import PhysicalDiskListSerializer
 from  rest_framework.decorators import api_view,authentication_classes
 from django_filters.rest_framework import DjangoFilterBackend
 import subprocess
@@ -47,7 +48,7 @@ class RoomView(ModelViewSet):
 
 
 class NetView(ModelViewSet):
-    queryset = models.NetName.objects.all()
+    queryset = models.NetName.objects.all().order_by('id')
     serializer_class = NetNameSerializer
     pagination_class = PageNumberPagination
 
@@ -161,7 +162,10 @@ class GetMemInfo(APIView):
             else:
                 return HttpResponse(res)
 
-
+class DiskListView(ModelViewSet):
+    queryset = models.PhysicalDisk.objects.all().order_by('id')
+    serializer_class = PhysicalDiskListSerializer
+    pagination_class = PageNumberPagination
 
 
 

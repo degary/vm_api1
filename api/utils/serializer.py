@@ -12,6 +12,13 @@ from rest_framework import exceptions
 #         for field in header_obj_list:
 #             header.append({field.name:field.verbose_name})
 #         return header
+class PhysicalDiskListSerializer(serializers.ModelSerializer):
+    # PhysicalDisk1= serializers.SerializerMethodField
+    class Meta:
+        model=models.PhysicalDisk
+        # fields=('id','disk_name', 'disk_free_space', 'room_name', 'physicaldisk')
+        fields='__all__'
+
 
 
 class PhysicalMachineSerializer(serializers.ModelSerializer):
@@ -25,7 +32,7 @@ class PhysicalMachineSerializer(serializers.ModelSerializer):
     class Meta:
         model=models.PhysicalMachine
         # fields='__all__'
-        fields=('id','machine_name','room_name','cpu','memory','host_ip','idrac_ip','host_mode','host_active','physicaldisk','host_free_mem')
+        fields=('id','machine_name','room_name','cpu','memory','host_ip','idrac_ip','host_mode','host_active','physicaldisk','host_mem_free')
         # depth=1
 
     def get_physicaldisk(self,row):

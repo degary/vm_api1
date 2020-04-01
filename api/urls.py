@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^(?P<version>[v1|v2]+)/', include(route.urls)),
     url(r'^(?P<version>[v1|v2]+)/room/$', views.RoomView.as_view({'get': 'list','post':'create'})),
     url(r'^(?P<version>[v1|v2]+)/net/$', views.NetView.as_view({'get': 'list','post':'create'})),
+    url(r'^(?P<version>[v1|v2]+)/disk/$', views.DiskListView.as_view({'get': 'list','post':'create'})),
     url(r'^(?P<version>[v1|v2]+)/room/(?P<pk>\d+)/$', views.RoomView.as_view({'get': 'retrieve'})),
     # url(r'^(?P<version>[v1|v2]+)/host/', views.HostView.as_view({'get': 'list','post':'create'})),
     # url(r'^(?P<version>[v1|v2]+)/vmhost/$', views.VHostView.as_view({'get': 'list','post':'create'})),
