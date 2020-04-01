@@ -14,10 +14,12 @@ from rest_framework import exceptions
 #         return header
 class PhysicalDiskListSerializer(serializers.ModelSerializer):
     # PhysicalDisk1= serializers.SerializerMethodField
+    disk_mount = serializers.CharField(source='disk_mount.machine_name')
     class Meta:
         model=models.PhysicalDisk
-        # fields=('id','disk_name', 'disk_free_space', 'room_name', 'physicaldisk')
-        fields='__all__'
+        fields=('id','disk_name', 'disk_free_space', 'disk_mount')
+        # fields='__all__'
+        # depth=1
 
 
 

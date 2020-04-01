@@ -65,7 +65,7 @@ class PhysicalMachine(models.Model):
 class PhysicalDisk(models.Model):
     disk_name=models.CharField(max_length=32,verbose_name='磁盘名称')
     disk_space=models.IntegerField(default=0,verbose_name='磁盘大小TB')
-    disk_free_apace=models.FloatField(default=0,verbose_name="可用空间")
+    disk_free_space=models.FloatField(default=0,verbose_name="可用空间")
     disk_mount=models.ForeignKey(to='PhysicalMachine')
 
     def __str__(self):
