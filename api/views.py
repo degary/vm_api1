@@ -166,12 +166,13 @@ class DiskListView(ModelViewSet):
     queryset = models.PhysicalDisk.objects.all().order_by('id')
     serializer_class = PhysicalDiskListSerializer
     pagination_class = PageNumberPagination
+    # filter_fields = ('id',)
 
     def headers(self,request,*args,**kwargs):
         header_fields_list = models.PhysicalDisk._meta.fields
         header_dic=get_headers(header_fields_list)
-        print(header_fields_list)
-        print(header_dic)
+        # print(header_fields_list)
+        # print(header_dic)
         return Response(header_dic)
 
 
